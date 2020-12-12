@@ -64,7 +64,6 @@ following steps describes how to deploy this application to production.
   deployed to a static host. I deployed it to github
   pages(https://abdus.github.io/techvariable)
 - `server/` can be deployed to heroku. it does not require additional
-  configurations. my deployment is on my own server
-  (https://techvariable.host.abdus.net)
+  configurations. my deployment endpoint: (https://techvariable.host.abdus.net/api/v1/)
 
 That's It.
