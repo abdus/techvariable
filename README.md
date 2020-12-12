@@ -37,6 +37,9 @@ manager.
 clone this repository using git. change dir to `client/` and install packages
 using yarn. once done, do the same for `server/`.
 
+then, copy `server/.env.example` to `server/.env` and fill it PostgreSQL
+Connection string.
+
 ### run
 
 to run `client` and `server` in parallal, open two `terminal`. in first one, go
