@@ -110,6 +110,10 @@ function Index() {
 
   return (
     <>
+      {filteredFoodData instanceof Array && filteredFoodData.length === 0 && (
+        <AlertUser />
+      )}
+
       {!showCreateWindow && (
         <Fab
           className={classes.fab}
@@ -131,7 +135,7 @@ function Index() {
           },
         }}
       >
-        {filteredFoodData && filteredFoodData.length > 0 ? (
+        {filteredFoodData && filteredFoodData.length >= 0 ? (
           <Carousel>
             {filteredFoodData.map((f, i) => (
               <FoodCard {...f} key={i} isCarousel={true} />
@@ -238,6 +242,8 @@ function Index() {
                         label={o}
                       />
                     ))
+                  ) : !foodData ? (
+                    <div>something went wrong</div>
                   ) : (
                     <Loader />
                   )}
@@ -279,5 +285,23 @@ function Index() {
     </>
   );
 }
+
+const AlertUser = () => (
+  <div
+    style={{
+      padding: "1rem",
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      background: "#f1c6c6",
+      color: "red",
+      textAlign: "center",
+      borderBottom: "1px solid red",
+    }}
+  >
+    Data Not Found For Given Query
+  </div>
+);
 
 export default Index;
