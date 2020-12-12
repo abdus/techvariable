@@ -1,0 +1,25 @@
+{
+  "name": "techvariable-assignment__server",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "DEBUG=app:* nodemon src/index.js",
+    "start": "node src/index.js",
+    "lint": "eslint"
+  },
+  "devDependencies": {
+    "eslint": "^7.15.0",
+    "nodemon": "^2.0.6"
+  },
+  "dependencies": {
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-status-codes": "^2.1.4",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  }
+}
