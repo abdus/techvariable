@@ -2,6 +2,7 @@ import React from "react";
 import { GlobalDishDataContext } from "../contexts";
 import { Grid, Container, Slider, Fab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
 import Carousel from "../components/Carousel";
 import FoodCard from "../components/FoodCard";
 import AccordionWrapper from "../components/Accordion";
@@ -45,6 +46,22 @@ function filterData(data = [], f = {}) {
   }
 
   return arr;
+}
+
+const StyledTitle = styled.div`
+  font-weight: bold;
+  border-bottom: 1px solid #efefef;
+  padding: 0 1rem 1rem 1rem;
+  text-transform: uppercase;
+`;
+
+function getUniqueValue(arr, property) {
+  const result = [];
+  for (let i of arr) {
+    result.push(i[property]);
+  }
+
+  return [...new Set(result)];
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -135,7 +152,16 @@ function Index() {
             style={{ margin: "auto" }}
             alignItems="flex-start"
           >
-            <Grid item xs={12} md={3} lg={3}>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              lg={3}
+              style={{
+                borderRight: window.innerWidth > 960 ? "1px solid #efefef" : "",
+              }}
+            >
+              <StyledTitle>Filters</StyledTitle>
               {/*Filters*/}
               <form
                 autoComplete="no"
@@ -153,11 +179,11 @@ function Index() {
               >
                 <AccordionWrapper title="Format">
                   {foodData instanceof Array ? ( // should NOT be filtered. or some of them would disappear
-                    foodData.map((f, i) => (
+                    getUniqueValue(foodData, "format").map((f, i) => (
                       <CheckboxWrapper
                         name="format"
-                        value={f.format ? f.format.toLowerCase() : ""}
-                        label={f.format}
+                        value={f ? f.toLowerCase() : ""}
+                        label={f}
                         key={i}
                       />
                     ))
@@ -204,12 +230,12 @@ function Index() {
               >
                 <AccordionWrapper title="Occasion">
                   {foodData instanceof Array ? ( // should NOT be filtered arr. or some items would be missing
-                    foodData.map((f, i) => (
+                    getUniqueValue(foodData, "occasion").map((o, i) => (
                       <CheckboxWrapper
                         name="occasion"
-                        value={f.occasion ? f.occasion.toLowerCase() : ""}
+                        value={o ? o.toLowerCase() : ""}
                         key={i}
-                        label={f.occasion}
+                        label={o}
                       />
                     ))
                   ) : (
@@ -227,6 +253,16 @@ function Index() {
               spacing={2}
               justify="center"
             >
+              <StyledTitle
+                style={{
+                  flexGrow: 1,
+                  minWidth: "100%",
+                  paddingTop: "0.5rem",
+                  paddingLeft: "4rem",
+                }}
+              >
+                Results
+              </StyledTitle>
               {filteredFoodData && filteredFoodData.length > 0 ? (
                 filteredFoodData.map((f, i) => (
                   <Grid item key={i}>

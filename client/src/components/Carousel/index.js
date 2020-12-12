@@ -60,7 +60,7 @@ const Carousel = (props) => {
                 props.children.length > 0 &&
                 props.children.map((x, i) => (
                   <Grid item key={i}>
-                    {x}
+                    {x}{console.log(x)}
                   </Grid>
                 ))}
             </Grid>
