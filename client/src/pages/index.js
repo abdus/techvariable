@@ -152,8 +152,13 @@ function Index() {
         <Container size="sm" style={{ padding: "2rem 0" }}>
           <Grid
             container
-            spacing={2}
-            style={{ margin: "auto" }}
+            spacing={0}
+            style={{
+              margin: "auto",
+
+              // TODO: weird bug. overflowing content on smaller devices. gotta figure out
+              width: window.innerWidth > 1400 ? "100%" : "90%",
+            }}
             alignItems="flex-start"
           >
             <Grid
