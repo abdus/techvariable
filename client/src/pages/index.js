@@ -77,6 +77,7 @@ function Index() {
   const [foodData, setFoodData] = React.useState(null);
   const [filteredFoodData, setFilteredFoodData] = React.useState(null);
   const [showCreateWindow, setShowCreateWindow] = React.useState(null);
+  const [reRender, setReRender] = React.useState(true);
   const [filters, setFilters] = React.useState({
     price: [200, 1900],
     format: [],
@@ -157,10 +158,17 @@ function Index() {
               margin: "auto",
 
               // TODO: weird bug. overflowing content on smaller devices. gotta figure out
-              width: window.innerWidth > 1400 ? "100%" : "90%",
+              width:
+                window.innerWidth > 1400
+                  ? "100%"
+                  : window.innerWidth > 1000
+                    ? "90%"
+                    : "75%",
             }}
             alignItems="flex-start"
+            justify="center"
           >
+            {window.addEventListener("resize", () => setReRender(!reRender))}
             <Grid
               item
               xs={12}
