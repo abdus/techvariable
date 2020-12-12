@@ -1,6 +1,8 @@
 class XHR {
   static base(path) {
-    return `http://localhost:3456${path}`;
+    return process.env.NODE_ENV === "production"
+      ? `https://techvariable.host.abdus.net${path}`
+      : `http://localhost:3456${path}`;
   }
 
   constructor(opts = {}) {
